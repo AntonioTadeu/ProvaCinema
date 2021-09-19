@@ -1,5 +1,6 @@
 import com.sun.xml.internal.org.jvnet.mimepull.CleanUpExecutorFactory;
 import org.junit.jupiter.api.Test;
+import static org.easymock.EasyMock.*;
 
 import java.rmi.ConnectIOException;
 
@@ -164,5 +165,41 @@ class IngressoTest {
         catch (NullPointerException e) {
             assertEquals("Cliente é obrigatório", e.getMessage());
         }
+    }
+
+    @Test
+    void deveRetornarNomeClienteDoIngressoMock() {
+        Filme filme = new Filme("Madagascar");
+        Sala sala = new Sala();
+        Sessao sessao = new Sessao(sala, filme);
+        Cliente cliente = createMock(Cliente.class);
+        expect(cliente.getNome()).andReturn("Tadeu");
+        replay(cliente);
+        Ingresso ingresso = new Ingresso(sala, sessao, cliente);
+        assertEquals("Tadeu", ingresso.getNomeCliente());
+    }
+
+    @Test
+    void deveRetornarCPFClienteDoIngressoMock() {
+        Filme filme = new Filme("Madagascar");
+        Sala sala = new Sala();
+        Sessao sessao = new Sessao(sala, filme);
+        Cliente cliente = createMock(Cliente.class);
+        expect(cliente.getCpf()).andReturn("19768967545");
+        replay(cliente);
+        Ingresso ingresso = new Ingresso(sala, sessao, cliente);
+        assertEquals("19768967545", ingresso.getCpfCliente());
+    }
+
+    @Test
+    void deveRetornarFilmeSessaoDoIngressoMock() {
+        Filme filme = new Filme("Madagascar");
+        Sala sala = new Sala();
+        Cliente cliente = new Cliente("Tadeu", "19817867856");
+        Sessao sessao = createMock(Sessao.class);
+        expect(sessao.getFilme()).andReturn(filme);
+        replay(sessao);
+        Ingresso ingresso = new Ingresso(sala, sessao, cliente);
+        assertEquals(filme, ingresso.getFilmeSessaoIngresso());
     }
 }

@@ -55,4 +55,16 @@ public class Ingresso {
         }
         this.cliente = cliente;
     }
+
+    public String getNomeCliente() {
+        return this.cliente.getNome();
+    }
+
+    public Filme getFilmeSessaoIngresso() {
+        return this.sessao.getFilme();
+    }
+
+    public String getCpfCliente() {
+        return this.cliente.getCpf();
+    }
 }

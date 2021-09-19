@@ -37,6 +37,10 @@ public class Sessao {
         return filme;
     }
 
+    public String getNomeFilme() {
+        return this.filme.getNome();
+    }
+
     public void setFilme(Filme filme) {
         if (filme == null) {
             throw new NullPointerException("Filme é obrigatório");

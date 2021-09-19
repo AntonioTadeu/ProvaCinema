@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.easymock.EasyMock.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SessaoTest {
@@ -131,5 +132,15 @@ class SessaoTest {
         sessao.removerIngresso(ingresso1);
         List<Ingresso> lista = Arrays.asList(ingresso2);
         assertEquals(lista, sessao.getIngressos());
+    }
+
+    @Test
+    void deveRetornarNomeFilmeDaSessaoMock() {
+        Filme filme = createMock(Filme.class);
+        expect(filme.getNome()).andReturn("Madagascar");
+        replay(filme);
+        Sala sala = new Sala();
+        Sessao sessao = new Sessao(sala, filme);
+        assertEquals("Madagascar", sessao.getNomeFilme());
     }
 }
