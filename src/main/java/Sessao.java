@@ -22,6 +22,17 @@ public class Sessao {
         }
     }
 
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        if (sala == null) {
+            throw new NullPointerException("Sala é obrigatória");
+        }
+        this.sala = sala;
+    }
+
     public Filme getFilme() {
         return filme;
     }

@@ -31,6 +31,6 @@ public class Cinema {
     }
 
     public void removerFuncionario(Funcionario funcionario) {
-        this.funcionarios.remove(funcionarios);
+        this.funcionarios.remove(funcionario);
     }
 }
